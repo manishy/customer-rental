@@ -15,21 +15,15 @@ public class Customer {
         rentals.add(arg);
     }
 
-    public String statement() {
-        return header() + body() + footer();
+    public String textStatement() {
+        return textHeader() + textBody() + textFooter();
     }
 
-    private String footer() {
-        String footer = "";
-        int frequentRenterPoints = frequentRenterPoints();
-        double totalAmount = totalAmount();
-        footer += "Amount owed is " + totalAmount + "\n";
-        footer += "You earned " + frequentRenterPoints
-                + " frequent renter points";
-        return footer;
+    private String textHeader() {
+        return "Rental Record for " + name + "\n";
     }
 
-    private String body() {
+    private String textBody() {
         String body = "";
         for (Rental rental : rentals) {
             double rentalAmount = rental.amount();
@@ -39,9 +33,16 @@ public class Customer {
         return body;
     }
 
-    private String header() {
-        return "Rental Record for " + name + "\n";
+    private String textFooter() {
+        String footer = "";
+        int frequentRenterPoints = frequentRenterPoints();
+        double totalAmount = totalAmount();
+        footer += "Amount owed is " + totalAmount + "\n";
+        footer += "You earned " + frequentRenterPoints
+                + " frequent renter points";
+        return footer;
     }
+
 
     private double totalAmount() {
         double totalAmount = 0;
@@ -60,5 +61,32 @@ public class Customer {
         return frequentRenterPoints;
     }
 
+    public String htmlStatement() {
+        return htmlHeader()+htmlBody()+htmlFooter();
+    }
+
+    private String htmlFooter() {
+        String footer = "";
+        int frequentRenterPoints = frequentRenterPoints();
+        double totalAmount = totalAmount();
+        footer += "Amount owed is " +"<b>"+ totalAmount +"</b><br/>";
+        footer += "You earned " + "<b>"+ frequentRenterPoints+ "</b>"
+                + " frequent renter points";
+        return footer;
+    }
+
+    private String htmlBody() {
+        String body = "";
+        for (Rental rental : rentals) {
+            double rentalAmount = rental.amount();
+            body += " " + rental.getMovie().getTitle() +
+                    " <b>"+rentalAmount+"</b>" + "<br/>";
+        }
+        return body;
+    }
+
+    private String htmlHeader() {
+        return "<h1> "+"Rental Record for " + name + " </h1>";
+    }
 }
 
