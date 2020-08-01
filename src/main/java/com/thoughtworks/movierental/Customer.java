@@ -15,34 +15,38 @@ public class Customer {
         rentals.add(arg);
     }
 
-    public String getName() {
-        return name;
+    public String statement() {
+        return header() + body() + footer();
     }
 
-    public String statement() {
-        String result = "Rental Record for " + getName() + "\n";
-        for (Rental rental : rentals) {
-            double rentalAmount = rental.amount();
-            //show figures for this rental
-            result += "\t" + rental.getMovie().getTitle() + "\t" +
-                    rentalAmount + "\n";
-        }
-
+    private String footer() {
+        String footer = "";
         int frequentRenterPoints = frequentRenterPoints();
         double totalAmount = totalAmount();
-
-        //add footer lines result
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + frequentRenterPoints
+        footer += "Amount owed is " + totalAmount + "\n";
+        footer += "You earned " + frequentRenterPoints
                 + " frequent renter points";
-        return result;
+        return footer;
+    }
+
+    private String body() {
+        String body = "";
+        for (Rental rental : rentals) {
+            double rentalAmount = rental.amount();
+            body += "\t" + rental.getMovie().getTitle() + "\t" +
+                    rentalAmount + "\n";
+        }
+        return body;
+    }
+
+    private String header() {
+        return "Rental Record for " + name + "\n";
     }
 
     private double totalAmount() {
         double totalAmount = 0;
         for (Rental rental : rentals) {
             double rentalAmount = rental.amount();
-            //show figures for this rental
             totalAmount += rentalAmount;
         }
         return totalAmount;

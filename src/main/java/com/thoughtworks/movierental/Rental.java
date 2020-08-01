@@ -4,6 +4,9 @@ public class Rental {
 
     private int daysRented;
     private Movie movie;
+    private static final int BONUS_RENTAL_POINTS = 2;
+    private static final int DEFAULT_RENTAL_POINTS = 1;
+
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -49,8 +52,9 @@ public class Rental {
     }
 
     public int frequentRenterPoints() {
-        // add bonus for a two day new release rental
-        if (isBonusApplied()) return  2;
-        return 1;
+        if (isBonusApplied()) {
+            return BONUS_RENTAL_POINTS;
+        }
+        return DEFAULT_RENTAL_POINTS;
     }
 }
