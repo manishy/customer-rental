@@ -164,3 +164,7 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,gradle,maven
+
+# System files
+.DS_Store
+**/.DS_Store
