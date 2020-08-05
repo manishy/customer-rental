@@ -1,6 +1,6 @@
 package com.thoughtworks.movierental;
 
-public class TextStatement {
+public class TextStatement implements Statement {
     private final String name;
     private final Rentals rentals;
 
@@ -10,14 +10,14 @@ public class TextStatement {
     }
 
     public String generate() {
-        return textHeader() + textBody() + textFooter();
+        return header() + body() + footer();
     }
 
-    private String textHeader() {
+    private String header() {
         return "Rental Record for " + name + "\n";
     }
 
-    private String textBody() {
+    private String body() {
         String body = "";
         for (Rental rental : rentals) {
             double rentalAmount = rental.amount();
@@ -27,7 +27,7 @@ public class TextStatement {
         return body;
     }
 
-    private String textFooter() {
+    private String footer() {
         String footer = "";
         footer += "Amount owed is " + rentals.totalAmount() + "\n";
         footer += "You earned " + rentals.frequentRenterPoints()

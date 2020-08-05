@@ -1,6 +1,6 @@
 package com.thoughtworks.movierental;
 
-public class HtmlStatement {
+public class HtmlStatement implements Statement {
     private final String name;
     private final Rentals rentals;
 
@@ -10,10 +10,10 @@ public class HtmlStatement {
     }
 
     public String generate() {
-        return htmlHeader() + htmlBody() + htmlFooter();
+        return header() + body() + footer();
     }
 
-    private String htmlFooter() {
+    private String footer() {
         String footer = "";
         footer += "Amount owed is " + "<b>" + rentals.totalAmount() + "</b><br/>";
         footer += "You earned " + "<b>" + rentals.frequentRenterPoints() + "</b>"
@@ -21,7 +21,7 @@ public class HtmlStatement {
         return footer;
     }
 
-    private String htmlBody() {
+    private String body() {
         String body = "";
         for (Rental rental : rentals) {
             double rentalAmount = rental.amount();
@@ -31,7 +31,7 @@ public class HtmlStatement {
         return body;
     }
 
-    private String htmlHeader() {
+    private String header() {
         return "<h1> " + "Rental Record for " + name + " </h1>";
     }
 }
