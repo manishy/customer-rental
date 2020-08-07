@@ -13,16 +13,12 @@ public class Movie {
     this.priceCode = priceCode;
   }
 
-  public int getPriceCode() {
-    return priceCode;
-  }
-
   public String getTitle() {
     return title;
   }
 
   public PriceCode priceCode() {
-      switch (getPriceCode()) {
+      switch (priceCode) {
           case REGULAR:
               return new RegularPriceCode();
           case NEW_RELEASE:

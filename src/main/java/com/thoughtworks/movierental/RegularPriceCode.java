@@ -7,4 +7,9 @@ public class RegularPriceCode implements PriceCode {
             amount += (daysRented - 2) * 1.5;
         return amount;
     }
+
+    @Override
+    public int frequentRenterPoints(int daysRented) {
+        return DEFAULT_RENTAL_POINTS;
+    }
 }

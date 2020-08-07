@@ -7,7 +7,7 @@ public class Rentals extends ArrayList<Rental> {
     public int frequentRenterPoints() {
         int frequentRenterPoints = 0;
         for (Rental rental : this) {
-            frequentRenterPoints += rental.frequentRenterPoints();
+            frequentRenterPoints += rental.getMovie().priceCode().frequentRenterPoints(rental.getDaysRented());
         }
         return frequentRenterPoints;
     }
