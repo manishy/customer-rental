@@ -1,7 +1,8 @@
 package com.thoughtworks.movierental;
 
-public class NewReleasePriceCode implements PriceCode {
+public class DefaultPriceCode implements PriceCode {
+    @Override
     public double amountFor(int daysRented) {
-        return daysRented * 3;
+        return 0;
     }
 }
