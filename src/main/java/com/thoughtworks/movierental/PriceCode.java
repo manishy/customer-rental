@@ -6,5 +6,6 @@ public interface PriceCode {
 
 
     double amountFor(int daysRented);
+
     int frequentRenterPoints(int daysRented);
 }
