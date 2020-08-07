@@ -22,24 +22,18 @@ public class Rental {
     }
 
     public double amount() {
-        double amount = 0;
         switch (getMovie().getPriceCode()) {
             case Movie.REGULAR:
-                amount += 2;
-                if (getDaysRented() > 2)
-                    amount += (getDaysRented() - 2) * 1.5;
-                break;
+                return new RegularPriceCode().amountFor(daysRented);
             case Movie.NEW_RELEASE:
-                amount += getDaysRented() * 3;
-                break;
+                return new NewReleasePriceCode().amountFor(daysRented);
             case Movie.CHILDRENS:
-                amount += 1.5;
-                if (getDaysRented() > 3)
-                    amount += (getDaysRented() - 3) * 1.5;
-                break;
+                return new ChildrenPriceCode().amountFor(daysRented);
+            default:
+                return 0;
         }
-        return amount;
     }
+
 
     public boolean isNewRelease() {
         return getMovie().getPriceCode() == Movie.NEW_RELEASE;
